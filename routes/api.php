@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ Route::group(['middleware' => 'auth:sanctum'], function ()
     Route::get('/users', function (Request $request) {
         return $request->user();
     });
-
-
 });
+
+Route::get('ticket', [TicketController::class, 'index'])->name('ticket.index');
+Route::get('ticket/detail/{id}', [TicketController::class, 'show'])->name('ticket.detail');
